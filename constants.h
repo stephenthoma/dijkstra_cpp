@@ -1,0 +1,7 @@
+#ifndef CONSTANTS_HEADER
+#define CONSTANTS_HEADER
+
+#define UNDEFINED -1
+#define INFINITY 1000000
+
+#endif
