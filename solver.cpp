@@ -11,6 +11,8 @@
 
 using namespace std;
 
+int INFINITY = -1;
+
 struct cmp_str
 {
    bool operator()(char const *a, char const *b) const
@@ -43,10 +45,14 @@ Node * ensureNode(map<const char *, Node *, cmp_str> * graph, const char * name)
 	return retNode;
 }
 
-void getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * filename)
+int getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * filename)
 {
 	FILE * file = fopen(filename, "r");
 
+	if (file == 0)
+		return FILE_NOT_FOUND_ERR;
+
+	//Else finish off the rest of the function?
 	char * startNodeName;
 	char * endNodeName;
 	int cost;
@@ -61,12 +67,17 @@ void getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * f
 		if(status == EOF)
 			break;
 
+		if(status != 3)
+			return MALFORMED_FILE_ERR;
+
 		Node * startNode = ensureNode(graph, startNodeName);
 		Node * endNode = ensureNode(graph, endNodeName);
 
 		Edge * newEdge = new Edge(startNode, endNode, cost);
 		startNode->addConnection(newEdge);
 	}
+
+	return SUCCESS;
 }
 
 int main(int argc, const char * argv[])
@@ -80,7 +91,21 @@ int main(int argc, const char * argv[])
 	}
 
 	map<const char *, Node *, cmp_str> graph;
-	getGraphFromFile(&graph, argv[1]);
+	
+	int fileStatus = getGraphFromFile(&graph, argv[1]);
+	if(fileStatus == FILE_NOT_FOUND_ERR)
+	{
+		printf("File not found.\n");
+		return -1;
+	}
+	else if(fileStatus == MALFORMED_FILE_ERR)
+	{
+		printf("Improperly formatted file.\n");
+		return -1;
+	}
+
+	INFINITY = graph.size() * graph.size();
+
 	const char * startNodeName = argv[2];
 	const char * endNodeName = argv[3];
 

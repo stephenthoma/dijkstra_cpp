@@ -12,10 +12,19 @@ using namespace std;
 #include "constants.h"
 #include "edge.h"
 
+/**
+ * Name: Node
+ * Desc: A connectable component in a graph representing a location
+**/
 class Node
 {
 public:
 
+	/**
+	 * Name: Node(const char * newName)
+	 * Desc: Creates a new node.
+	 * Para: newName, The name to associate with this node.
+	**/
 	Node(const char * newName);
 
 	~Node();

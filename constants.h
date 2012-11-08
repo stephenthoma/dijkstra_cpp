@@ -2,6 +2,8 @@
 #define CONSTANTS_HEADER
 
 #define UNDEFINED -1
-#define INFINITY 1000000
+#define FILE_NOT_FOUND_ERR 1
+#define MALFORMED_FILE_ERR 2
+#define SUCCESS 0
 
 #endif
