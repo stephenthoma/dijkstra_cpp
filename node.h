@@ -14,7 +14,7 @@ using namespace std;
 
 /**
  * Name: Node
- * Desc: A connectable component in a graph representing a location
+ * Desc: A connectable component in a graph representing a location.
 **/
 class Node
 {
@@ -27,11 +27,15 @@ public:
 	**/
 	Node(const char * newName);
 
+	/**
+	* Name: ~Node()
+	* Desc: Delete Node instance.
+	**/
 	~Node();
 
 	/**
 	* Name: getCost()
-	* Desc: Returns the cost of a node
+	* Desc: Returns the cost of a node.
 	**/
 	int getCost();
 
@@ -50,7 +54,7 @@ public:
 
 	/**
 	* Name: addConnection(Edge * newEdge)
-	* Desc: Associates an edge with a node
+	* Desc: Associates an edge with a node.
 	* Para: newEdge, The edge to be associated.
 	**/	
 	void addConnection(Edge * newEdge);
@@ -58,26 +62,26 @@ public:
 	/**
 	* Name: computeCost(Edge * edgeToMe)
 	* Desc: Determine cost with the cost of the previous node and the connecting edge.
-	* Para: edgeToMe, The edge to be considered
+	* Para: edgeToMe, The edge to be considered.
 	**/
 	void computeCost(Edge * edgeToMe);
 
 	/**
 	* Name: setEdgeToMe(Edge * edgeToMe)
-	* Desc: Makes the given edge connect to a node
-	* Para: edgeToMe, The edge to be connected to the node
+	* Desc: Makes the given edge connect to a node.
+	* Para: edgeToMe, The edge to be connected to the node.
 	**/
 	void setEdgeToMe(Edge * edgeToMe);
 
 	/**
 	* Name: getEdgeToMe()
-	* Desc: Retrieves edges connected to the node
+	* Desc: Retrieves edges connected to the node.
 	**/
 	Edge * getEdgeToMe();
 
 	/**
 	* Name: getName()
-	* Desc: Retrieves the Node's name
+	* Desc: Retrieves the Node's name.
 	**/
 	const char * getName();
 

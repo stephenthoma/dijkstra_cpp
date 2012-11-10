@@ -104,6 +104,7 @@ int main(int argc, const char * argv[])
 		return -1;
 	}
 
+	//Set infinity to the maximal possible cost
 	INFINITY = graph.size() * graph.size();
 
 	const char * startNodeName = argv[2];
@@ -176,7 +177,7 @@ int main(int argc, const char * argv[])
 	}
 	else // Path found
 	{
-		// Go thorugh linked list back through path
+		// Go through linked list back through path
 		stack<Node *> traversalStack;
 		while(currentNode->getEdgeToMe() != NULL)
 		{
