@@ -13,6 +13,10 @@ using namespace std;
 
 int INFINITY = -1;
 
+/**
+* Name: cmp_str
+* Desc: Compares two strings, returns true or false based on match.
+**/
 struct cmp_str
 {
    bool operator()(char const *a, char const *b) const
@@ -21,6 +25,12 @@ struct cmp_str
    }
 };
 
+/**
+* Name: cmp_move
+* Desc: Determines which of two moves has a greater cost.
+* Para: a, The first possible move.
+*		b, The second possible move.
+**/
 struct cmp_move : public binary_function<PossibleMove *, PossibleMove *, bool>
 {
    bool operator()(PossibleMove const *a, PossibleMove const *b) const
@@ -29,6 +39,12 @@ struct cmp_move : public binary_function<PossibleMove *, PossibleMove *, bool>
    }
 };
 
+/**
+* Name: ensureNode(map<const char *, Node *, cmp_str> * graph, const char * name)
+* Desc: Checks to see if a node exists within the graph.
+* Para: graph, The data structure containing all node information.
+*		name, The name of the node being checked.
+**/
 Node * ensureNode(map<const char *, Node *, cmp_str> * graph, const char * name)
 {
 	Node * retNode;
@@ -45,6 +61,12 @@ Node * ensureNode(map<const char *, Node *, cmp_str> * graph, const char * name)
 	return retNode;
 }
 
+/**
+* Name: getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * filename)
+* Desc: Retrieves contents of a .csv file containing node information.
+* Para: graph, The data structure containing all node information.
+*		filename, The name of the file to retrieve information from.
+**/
 int getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * filename)
 {
 	FILE * file = fopen(filename, "r");
@@ -52,7 +74,6 @@ int getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * fi
 	if (file == 0)
 		return FILE_NOT_FOUND_ERR;
 
-	//Else finish off the rest of the function?
 	char * startNodeName;
 	char * endNodeName;
 	int cost;
@@ -79,7 +100,12 @@ int getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * fi
 
 	return SUCCESS;
 }
-
+/**
+* Name: main(int argc, const char * argv[])
+* Desc: The main algorithm logic.
+* Para: argc, Number of arguments passed to the program.
+*		argv, Contents of arguments passed to the program.
+**/
 int main(int argc, const char * argv[])
 {
 	bool shouldEnqueueConnections;
