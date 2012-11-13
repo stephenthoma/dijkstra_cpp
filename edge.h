@@ -11,44 +11,46 @@ using namespace std;
 class Node;
 
 /**
-* Name: Edge
-* Desc: A connecting component between two nodes representing a path.
+ * Name: Edge
+ * Desc: A connecting component between two nodes representing a path.
+ * Auth: Stephen Thoma, 2012
 **/
 class Edge
 {
 public:
 
 	/**
-	* Name: Edge(Node * newStartNode, Node * newEndNode, int newCost)
-	* Desc: Creates a new edge.
-	* Para: newStartNode, The starting point to associate with this edge.
-	*		newEndNode, The end point to associate with this edge.
-	*		newCost, The cost of traveling across the edge.
+	 * Name: Edge(Node * newStartNode, Node * newEndNode, int newCost)
+	 * Desc: Creates a new edge.
+	 * Para: newStartNode, The starting point to associate with this edge.
+	 *		newEndNode, The end point to associate with this edge.
+	 *		newCost, The cost of traveling across the edge.
 	**/
 	Edge(Node * newStartNode, Node * newEndNode, int newCost);
 
 	/**
-	* Name: getStartNode()
-	* Desc: Returns the starting node of the edge.
+	 * Name: getStartNode()
+	 * Desc: Returns the starting node of the edge.
 	**/
 	Node * getStartNode();
 
 	/**
-	* Name: getEndNode()
-	* Desc: Returns the ending node of the edge.
+	 * Name: getEndNode()
+	 * Desc: Returns the ending node of the edge.
 	**/
 	Node * getEndNode();
 
 	/**
-	* Name: getOtherNode(Node * node)
-	* Desc: Get the node on the other side of the edge
-	* Para: node, The node on the starting side
+	 * Name: getOtherNode(Node * node)
+	 * Desc: Get the node on the other side of the edge
+	 * Para: node, The node on the starting side
 	**/
 	Node * getOtherNode(Node * node);
 
 	/**
-	* Name: getCost()
-	* Desc: Returns the cost of traveling from the edge's start node to its end node.
+	 * Name: getCost()
+	 * Desc: Returns the cost of traveling from the edge's start node to its end
+	 *       node.
 	**/
 	int getCost();
 

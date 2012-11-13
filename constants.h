@@ -1,3 +1,9 @@
+/**
+ * Name: constants.h
+ * Desc: Constants global to the entire application.
+ * Auth: Stephen Thoma, 2012
+**/
+
 #ifndef CONSTANTS_HEADER
 #define CONSTANTS_HEADER
 

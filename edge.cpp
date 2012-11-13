@@ -1,3 +1,9 @@
+/**
+ * Name: edge.cpp
+ * Desc: Implementation of edge class described in edge.h
+ * Auth: Stephen Thoma, 2012
+**/
+
 #include "edge.h"
 
 Edge::Edge(Node * newStartNode, Node * newEndNode, int newCost)

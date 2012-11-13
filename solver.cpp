@@ -14,8 +14,8 @@ using namespace std;
 int INFINITY = -1;
 
 /**
-* Name: cmp_str
-* Desc: Compares two strings, returns true or false based on match.
+ * Name: cmp_str
+ * Desc: Compares two strings, returns true or false based on match.
 **/
 struct cmp_str
 {
@@ -26,10 +26,13 @@ struct cmp_str
 };
 
 /**
-* Name: cmp_move
-* Desc: Determines which of two moves has a greater cost.
-* Para: a, The first possible move.
-*		b, The second possible move.
+ * Name: cmp_move
+ * Desc: Determines which of two moves has a greater cost.
+ * Para: a, The first possible move.
+ *		b, The second possible move.
+ * Retr: True if the first operand has a higher cost than the second operand.
+ *       False otherwise.
+ * Auth: Stephen Thoma, 2012
 **/
 struct cmp_move : public binary_function<PossibleMove *, PossibleMove *, bool>
 {
@@ -40,10 +43,10 @@ struct cmp_move : public binary_function<PossibleMove *, PossibleMove *, bool>
 };
 
 /**
-* Name: ensureNode(map<const char *, Node *, cmp_str> * graph, const char * name)
-* Desc: Checks to see if a node exists within the graph.
-* Para: graph, The data structure containing all node information.
-*		name, The name of the node being checked.
+ * Name: ensureNode(map<const char *, Node *, cmp_str> * graph, const char * name)
+ * Desc: Checks to see if a node exists within the graph.
+ * Para: graph, The data structure containing all node information.
+ *		name, The name of the node being checked.
 **/
 Node * ensureNode(map<const char *, Node *, cmp_str> * graph, const char * name)
 {
@@ -62,12 +65,14 @@ Node * ensureNode(map<const char *, Node *, cmp_str> * graph, const char * name)
 }
 
 /**
-* Name: getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * filename)
-* Desc: Retrieves contents of a .csv file containing node information.
-* Para: graph, The data structure containing all node information.
-*		filename, The name of the file to retrieve information from.
+ * Name: getGraphFromFile(map<const char *, Node *, cmp_str> * graph,
+ *       const char * filename)
+ * Desc: Retrieves contents of a .csv file containing node information.
+ * Para: graph, The data structure containing all node information.
+ *		filename, The name of the file to retrieve information from.
 **/
-int getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * filename)
+int getGraphFromFile(map<const char *, Node *, cmp_str> * graph,
+	const char * filename)
 {
 	FILE * file = fopen(filename, "r");
 
@@ -83,7 +88,8 @@ int getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * fi
 	{
 		startNodeName = new char[20];
 		endNodeName = new char[20];
-		status = fscanf(file, "%[^,],%[^,],%d\n", startNodeName, endNodeName, &cost);
+		status = fscanf(file, "%[^,],%[^,],%d\n", startNodeName, endNodeName,
+			&cost);
 
 		if(status == EOF)
 			break;
@@ -100,11 +106,12 @@ int getGraphFromFile(map<const char *, Node *, cmp_str> * graph, const char * fi
 
 	return SUCCESS;
 }
+
 /**
-* Name: main(int argc, const char * argv[])
-* Desc: The main algorithm logic.
-* Para: argc, Number of arguments passed to the program.
-*		argv, Contents of arguments passed to the program.
+ * Name: main(int argc, const char * argv[])
+ * Desc: The main algorithm logic.
+ * Para: argc, Number of arguments passed to the program.
+ *		argv, Contents of arguments passed to the program.
 **/
 int main(int argc, const char * argv[])
 {
@@ -118,6 +125,7 @@ int main(int argc, const char * argv[])
 
 	map<const char *, Node *, cmp_str> graph;
 	
+	// Load graph specification file
 	int fileStatus = getGraphFromFile(&graph, argv[1]);
 	if(fileStatus == FILE_NOT_FOUND_ERR)
 	{
@@ -161,7 +169,8 @@ int main(int argc, const char * argv[])
 		{
 			vector<Edge *> * connections = currentNode->getConnections();
 			vector<Edge *>::iterator connectionItr;
-			for(connectionItr = connections->begin(); connectionItr != connections->end(); connectionItr++)
+			for(connectionItr = connections->begin();
+			 connectionItr != connections->end(); connectionItr++)
 			{
 				Edge * curEdge = *connectionItr;
 				PossibleMove * possibleMove = new PossibleMove(currentNode, curEdge);
